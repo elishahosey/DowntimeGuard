@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DowntimeGuard</string>
+    <string name="title_activity_layout_compose">LayoutCompose</string>
+    <string name="title_activity_front_page">FrontPage</string>
+</resources>
