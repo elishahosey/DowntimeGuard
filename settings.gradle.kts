@@ -16,7 +16,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+<<<<<<< Updated upstream
         maven(url = "https://jitpack.io")
+=======
+        maven(url = "https://jitpack.io") // Add jitpack
+>>>>>>> Stashed changes
     }
 }
 
