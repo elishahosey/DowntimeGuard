@@ -35,11 +35,20 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
     }
-
-    //Level 1) App opens-> Button Intro clicked
-   private fun goToDashboardPage(){
-
-
+    override fun onPause() {
+        super.onPause()
+        // Pause animations, videos, sensors, etc.
     }
+
+    override fun onStop() {
+        super.onStop()
+        // Release resources or save more persistent state
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Restart UI updates, resume activity
+    }
+
 }
 
