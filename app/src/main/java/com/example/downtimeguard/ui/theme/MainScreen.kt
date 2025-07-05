@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.ui.theme.ui.theme.DowntimeGuardTheme
 
@@ -35,6 +36,7 @@ class MainScreen : ComponentActivity() {
         setContent {
             DowntimeGuardTheme {
                 MainScreen(
+
 //                        name = "Android",
 //                        modifier = Modifier.padding(innerPadding)
                 )
@@ -43,8 +45,9 @@ class MainScreen : ComponentActivity() {
     }
 }
 @Composable
-fun MainScreenUI() {
+fun MainScreenUI(navController: NavController) {
     val context = LocalContext.current
+//    val navController= rememberNavController()
 
     Column(
         modifier = Modifier
@@ -62,7 +65,7 @@ fun MainScreenUI() {
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
-        CreateButton(text = "Let’s Get Started") {
+        CreateButton(navController,text = "Let’s Get Started") {
             Toast.makeText(context, "Starting...", Toast.LENGTH_SHORT).show()
         }
 
@@ -79,8 +82,7 @@ fun MainScreenUI() {
 
 // composable function for a button
 @Composable
-fun CreateButton(text: String, onClick: () -> Unit) {
-    val navController= rememberNavController()
+fun CreateButton(navController: NavController,text: String, onClick: () -> Unit) {
     Button(
         onClick = {
             // Navigate to Dashboard screen
@@ -102,7 +104,9 @@ fun CreateButton(text: String, onClick: () -> Unit) {
 @Preview(showBackground = true, name = "MainScreen Preview")
 @Composable
 fun PreviewMainScreen() {
+    val navController= rememberNavController()
     MainScreenUI(
+        navController
 //        onStartClick = {},
 //        isBlockerEnabled = false,
 //        onToggleBlocker = {}
