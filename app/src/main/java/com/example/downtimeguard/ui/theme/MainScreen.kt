@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.ui.theme.ui.theme.DowntimeGuardTheme
 
 class MainScreen : ComponentActivity() {
@@ -79,8 +80,12 @@ fun MainScreenUI() {
 // composable function for a button
 @Composable
 fun CreateButton(text: String, onClick: () -> Unit) {
+    val navController= rememberNavController()
     Button(
-        onClick = onClick,
+        onClick = {
+            // Navigate to Dashboard screen
+                navController.navigate("dashboard")
+        },
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF03DAC5)),
         modifier = Modifier.padding(vertical = 8.dp),
         elevation = ButtonDefaults.buttonElevation()

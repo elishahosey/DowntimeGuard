@@ -1,11 +1,10 @@
 package com.example.downtimeguard
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Switch
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.example.downtimeguard.service.ActivityRecognitionHelper
-import com.example.downtimeguard.service.SensorService
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.ui.theme.DowntimeGuardTheme
 import com.example.downtimeguard.ui.theme.MainScreenUI
 import com.example.downtimeguard.utils.PermissionsUtil
@@ -50,5 +49,11 @@ class MainActivity : AppCompatActivity() {
         // Restart UI updates, resume activity
     }
 
+}
+
+@Composable
+fun MainScreenUI(navController: NavController) {
+    val navController = rememberNavController()
+    NavGraph(navController = navController)
 }
 
