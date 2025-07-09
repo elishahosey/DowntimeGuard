@@ -29,10 +29,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Level 1) App opens-> Button Intro clicked
-   private fun goToDashboardPage(){
+    //1-request permission for app tracking
+    //2- if yes-track, otherwise show alert or notif of request
 
 
-    }
 }
 
