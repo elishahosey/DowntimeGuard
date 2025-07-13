@@ -6,14 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.downtimeguard.service.ActivityRecognitionHelper
 import com.example.downtimeguard.service.SensorService
 import com.example.downtimeguard.utils.PermissionsUtil
+import com.example.downtimeguard.utils.AppTrackerService
 
 class MainActivity : AppCompatActivity() {
+    private var stat : Boolean = false
+    private lateinit var  ats : AppTrackerService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        PermissionsUtil.requestAllPermissions(this)
+        ats=AppTrackerService(this)
+        stat= ats.checkUsageStatsPermission()
+//        PermissionsUtil.requestAllPermissions(this)
 
         val blockerSwitch: Switch = findViewById(R.id.switch_blocker)
 

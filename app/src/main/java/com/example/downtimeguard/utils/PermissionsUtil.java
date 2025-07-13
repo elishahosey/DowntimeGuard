@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 public class PermissionsUtil {
     Context context;
 
+
     public static void requestAllPermissions(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{
                 Manifest.permission.ACTIVITY_RECOGNITION,
