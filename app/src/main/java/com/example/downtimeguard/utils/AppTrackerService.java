@@ -24,7 +24,7 @@ public class AppTrackerService {
                     context.getPackageName()
             );
         } else {
-            mode = appOpsManager.checkOpNoThrow(
+            mode = appOpsManager.unsafeCheckOpNoThrow(
                     "android:get_usage_stats",
                     Process.myUid(),
                     context.getPackageName()
