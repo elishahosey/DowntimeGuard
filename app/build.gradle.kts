@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.navigation.compose.jvmstubs)
     val room_version = "2.7.2"
 
     implementation("androidx.room:room-runtime:$room_version")
@@ -53,7 +54,7 @@ dependencies {
     val nav_version = "2.9.0"
 
     // Navigation dependencies from document
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+//    implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
