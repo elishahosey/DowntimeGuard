@@ -7,7 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.ui.theme.DowntimeGuardTheme
-import com.example.downtimeguard.utils.PermissionsUtil
 import com.example.downtimeguard.utils.AppTrackerService
 
 class MainActivity : AppCompatActivity() {
@@ -43,10 +42,6 @@ class MainActivity : AppCompatActivity() {
 //                ActivityRecognitionHelper.removeActivityUpdates(this)
 //            }
 //        }
-    }
-    override fun onPause() {
-        super.onPause()
-        // Pause animations, videos, sensors, etc.
     }
 
     override fun onStop() {
