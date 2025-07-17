@@ -1,5 +1,4 @@
 package com.example.downtimeguard
-import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -44,13 +43,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
     }
-    override fun onPause() {
-        super.onPause()
-        // Pause animations, videos, sensors, etc.
-    }
-
-    //1-request permission for app tracking
-    //2- if yes-track, otherwise show alert or notif of request
 
     override fun onStop() {
         super.onStop()
