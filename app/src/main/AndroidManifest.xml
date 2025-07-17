@@ -17,7 +17,12 @@
         android:theme="@style/Theme.DowntimeGuard"
         tools:targetApi="31">
         <activity
-            android:name=".ui.theme.FrontPage"
+            android:name=".ui.theme.Dashboard"
+            android:exported="false"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.DowntimeGuard" />
+        <activity
+            android:name=".ui.theme.MainScreen"
             android:exported="false"
             android:label="@string/title_activity_front_page"
             android:theme="@style/Theme.DowntimeGuard" />

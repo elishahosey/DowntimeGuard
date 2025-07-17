@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.downtimeguard.ui.theme.ui.theme.DowntimeGuardTheme
 
-class FrontPage : ComponentActivity() {
+class MainScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,7 +42,7 @@ class FrontPage : ComponentActivity() {
     }
 }
 @Composable
-fun MainScreen() {
+fun MainScreenUI() {
     val context = LocalContext.current
 
     Column(
@@ -97,7 +97,7 @@ fun CreateButton(text: String, onClick: () -> Unit) {
 @Preview(showBackground = true, name = "MainScreen Preview")
 @Composable
 fun PreviewMainScreen() {
-    MainScreen(
+    MainScreenUI(
 //        onStartClick = {},
 //        isBlockerEnabled = false,
 //        onToggleBlocker = {}

@@ -48,15 +48,27 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
+    val nav_version = "2.9.0"
+
+    // Navigation dependencies from document
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation("com.github.jaikeerthick:Composable-Graphs:1.2.3")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.github.jaikeerthick:Composable-Graphs:v1.2.3")
+    implementation("com.google.android.material:material:1.12.0")
     implementation(libs.androidx.material3)
     implementation(libs.appcompat)
     implementation(libs.play.services.location)
@@ -67,5 +79,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 
 }
