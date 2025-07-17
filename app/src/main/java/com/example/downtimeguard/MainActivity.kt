@@ -1,13 +1,9 @@
 package com.example.downtimeguard
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Switch
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.example.downtimeguard.service.ActivityRecognitionHelper
-import com.example.downtimeguard.service.SensorService
+import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.ui.theme.DowntimeGuardTheme
-import com.example.downtimeguard.ui.theme.MainScreenUI
 import com.example.downtimeguard.utils.PermissionsUtil
 import com.example.downtimeguard.utils.AppTrackerService
 
@@ -18,8 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent{
+            val navController = rememberNavController()
             DowntimeGuardTheme {
-                MainScreenUI()
+                NavGraph(navController)
             }
             }
 
@@ -40,10 +37,20 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
     }
+    override fun onPause() {
+        super.onPause()
+        // Pause animations, videos, sensors, etc.
+    }
 
-    //1-request permission for app tracking
-    //2- if yes-track, otherwise show alert or notif of request
+    override fun onStop() {
+        super.onStop()
+        // Release resources or save more persistent state
+    }
 
+    override fun onResume() {
+        super.onResume()
+        // Restart UI updates, resume activity
+    }
 
 }
 
