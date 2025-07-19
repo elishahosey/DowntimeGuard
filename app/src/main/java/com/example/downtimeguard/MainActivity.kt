@@ -1,7 +1,7 @@
 package com.example.downtimeguard
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -44,11 +44,6 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
-    override fun onStop() {
-        super.onStop()
-        // Release resources or save more persistent state
-    }
-
     override fun onResume() {
         super.onResume()
         // Restart UI updates, resume activity
@@ -57,11 +52,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Usage access not granted", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun startTrackingUsage() {
-        // This is where your logic goes (e.g. read UsageStatsManager, update DB, etc.)
-        Log.d("DowntimeGuard", "Starting to track app usage...")
     }
 
 }
