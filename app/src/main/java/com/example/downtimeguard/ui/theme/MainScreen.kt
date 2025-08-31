@@ -85,7 +85,7 @@ fun MainScreenUI(navController: NavController) {
 fun CreateButton(navController: NavController,text: String, onClick: () -> Unit) {
     Button(
         onClick = {
-            // Navigate to Dashboard screen
+            // Navigate to Dashboard screen home -> Dashboard
                 navController.navigate("dashboard")
         },
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF03DAC5)),

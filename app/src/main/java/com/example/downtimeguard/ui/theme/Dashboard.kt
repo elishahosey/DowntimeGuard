@@ -14,6 +14,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -23,6 +24,8 @@ import androidx.navigation.compose.rememberNavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(navController: NavController) {
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -42,8 +45,26 @@ fun DashboardScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                // Start Tracking button, permission already granted
+                //TODO once button is clicked, pick list of apps
+                //  1)first glance 2) in depth review => thru charts
                 Button(onClick = {
-                    // Example: navigate to a screen named "settings"
+//                    if (!UsagePermissionUtils.hasUsageAccess(context)) {
+//                        // Opens the Usage Access settings if permission isn't granted
+//                        context.startActivity(UsagePermissionUtils.usageAccessSettingsIntent())
+//                    } else {
+//                        // Starts the Java foreground service
+//                        val intent = Intent(context, AppTrackerServices::class.java)
+//                        ContextCompat.startForegroundService(context, intent)
+//                    }
+                }) {
+                    Text("Go ahead and grab distracting apps!")
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                // Example navigate button
+                Button(onClick = {
                     navController.navigate("settings")
                 }) {
                     Text("Go to Settings")
@@ -53,7 +74,8 @@ fun DashboardScreen(navController: NavController) {
     )
 }
 
-@Preview(showBackground = true)
+//TODO Build App Status Chart Screen here
+@Preview(showBackground = true,name = "Dashboard Preview")
 @Composable
 fun DashboardScreenPreview() {
     DowntimeGuardTheme {

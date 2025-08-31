@@ -3,4 +3,9 @@
     <string name="title_activity_layout_compose">LayoutCompose</string>
     <string name="title_activity_front_page">FrontPage</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="app_tracker_label">App Tracker</string>
+    <string name="accessibility_service_summary">Tracks foreground app usage for focus</string>
+    <string name="accessibility_service_description">
+        Monitors the foreground app to log usage sessions.
+    </string>
 </resources>

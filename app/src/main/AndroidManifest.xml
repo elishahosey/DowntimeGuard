@@ -7,6 +7,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,11 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DowntimeGuard"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.theme.Dashboard"
-            android:exported="false"
-            android:label="@string/title_activity_dashboard"
-            android:theme="@style/Theme.DowntimeGuard" />
+<!--        <activity-->
+<!--            android:name=".ui.theme.Dashboard"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_dashboard"-->
+<!--            android:theme="@style/Theme.DowntimeGuard" />-->
         <activity
             android:name=".ui.theme.MainScreen"
             android:exported="false"
@@ -42,6 +43,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--            this is a background service-->
+        <service
+            android:name=".services.AppTrackerServices"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:label="@string/app_tracker_label"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/app_tracker_accessibility_service"/>
+
+        </service>
     </application>
 
 </manifest>
