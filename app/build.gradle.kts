@@ -1,4 +1,5 @@
 plugins {
+    kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -46,20 +47,26 @@ android {
 }
 
 dependencies {
-//    implementation(libs.androidx.navigation.compose.jvmstubs)
+    //    implementation(libs.androidx.navigation.compose.jvmstubs)
     val room_version = "2.7.2"
 
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
     val nav_version = "2.9.0"
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
 
     // Navigation dependencies from document
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation( "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
 
 
     implementation(libs.androidx.core.ktx)
