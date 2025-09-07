@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.downtimeguard.services.AppTrackerServices
 import com.example.downtimeguard.ui.theme.AppTrackerScreen
 import com.example.downtimeguard.ui.theme.DowntimeGuardTheme
 import com.example.downtimeguard.ui.theme.viewmodel.AppUsageViewModel
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "onResume: Checking accessibility permission")
     }
 
-    //TODO: See why accessibility is resetting to false
     private fun checkforAccessibilityPermission() {
         val accessibilityEnabled = isAccessibilityServiceEnabled()
         Log.d("MainActivity", "Permission check result: $accessibilityEnabled")
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun isAccessibilityServiceEnabled(): Boolean {
-        val serviceName = packageName + "/" + AppTrackerService::class.java.canonicalName
+        val serviceName = packageName + "/" + AppTrackerServices::class.java.canonicalName
         val accessibilityEnabled = try {
             Settings.Secure.getInt(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED)
         } catch (e: Settings.SettingNotFoundException) {
