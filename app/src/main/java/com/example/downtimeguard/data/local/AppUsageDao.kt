@@ -13,6 +13,8 @@ interface AppUsageDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(event: AppUsageInfo)
 
+    //TODO: Delete after a certain time
+
     @Query("""
         SELECT * FROM app_usage_events 
         WHERE startTimeMillis >= :since 

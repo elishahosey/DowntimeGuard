@@ -9,6 +9,8 @@ data class AppUsageInfo(
     @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val packageName: String,
     val appName: String,
+//    //Bridge for App Entity, TODO: find unique app identity
+//    val appId: Int,
     val startTimeMillis: Long,
     val endTimeMillis: Long,
     val durationMillis: Long,

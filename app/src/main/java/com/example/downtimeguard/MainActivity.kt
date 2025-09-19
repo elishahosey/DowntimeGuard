@@ -1,7 +1,6 @@
 package com.example.downtimeguard
 import android.app.AppOpsManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -30,14 +29,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //TODO: hoist this pass other UIs
-        ats = AppTrackerService(this)
-        stat = ats.checkUsageStatsPermission()
-
-        if (!stat) {
-            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-        }
-        checkForPermission()
+//        //TODO: hoist this pass other UIs
+//        ats = AppTrackerService(this)
+//        stat = ats.checkUsageStatsPermission()
+//
+//        if (!stat) {
+//            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+//        }
+//        checkForPermission()
     }
 
 
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         return mode == AppOpsManager.MODE_ALLOWED
     }
 
-
+    //TODO: Have it hold the accessibility status after logging off
     private fun isAccessibilityServiceEnabled(): Boolean {
         val serviceName = packageName + "/" + AppTrackerServices::class.java.canonicalName
         val accessibilityEnabled = try {
