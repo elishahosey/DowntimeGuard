@@ -1,19 +1,23 @@
 package com.example.downtimeguard.data.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 
 
-@Entity(tableName = "app_list")
-data class App (
-//    @Embedded val appId: AppUsageInfo,
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
-//    TODO: Figure out link of id to usage, with AppUsageInfo
-
-//    @Relation(
-//        entity = ,
-//        parentColumn = "appId",
-//        entityColumn = "id"
-//
-//    )
+//snapshot of apps and details for later reference
+data class AppListUIState (
+    val appList: List<ApplicationInfo> = emptyList()
 )
+
+//specific things for ui
+data class AppItem(
+    val id: String, //packageName
+    val title: String,
+
+)
+
+fun ApplicationInfo.toAppItem(pm: PackageManager): AppItem =
+    AppItem(
+        id = packageName ?: "",
+        title = pm.getApplicationLabel(this).toString()
+    )

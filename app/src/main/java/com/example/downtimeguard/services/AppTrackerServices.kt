@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import com.example.downtimeguard.data.model.AppItem
+import com.example.downtimeguard.data.repository.AppRepository
 import com.example.downtimeguard.data.repository.AppUsageRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +17,10 @@ import kotlinx.coroutines.launch
 
 class AppTrackerServices : AccessibilityService() {
     private val TAG = "AppTrackerService"
+    val apps: LiveData<List<AppItem>> = appRepository.apps.asLiveData()
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var repository:AppUsageRepository
+    private lateinit var appRepository: AppRepository
     private var CurrentPackage:String?=null
     private var CurrentStartTime: Long=0
     companion object{
@@ -26,18 +31,20 @@ class AppTrackerServices : AccessibilityService() {
     override fun onCreate(){
         super.onCreate()
         repository = AppUsageRepository(applicationContext)
+        appRepository= AppRepository(applicationContext)
         _isRunning.postValue(true)
     }
 
     override fun onServiceConnected() {
         super.onServiceConnected()
+        fetchInstalledApps() // get the installed apps
         val info = AccessibilityServiceInfo()
         info.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
         info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
         info.notificationTimeout = 100
 
         this.serviceInfo = info
-        Log.d(TAG, "Accessibility Service conneccted")
+        Log.d(TAG, "Accessibility Service connected")
 
     }
 
@@ -76,6 +83,18 @@ class AppTrackerServices : AccessibilityService() {
             repository.logAppUsageEvent(packageName,timestamp,timestamp)
         }
     }
+
+    private fun fetchInstalledApps() {
+        serviceScope.launch {
+            try {
+                appRepository.refreshApps() // updates StateFlow inside repo
+                Log.d(TAG, "Installed apps loaded & published")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error loading apps", e)
+            }
+        }
+    }
+
 
     override fun onInterrupt(){
         Log.e(TAG,"Accessibility Service Interrupted")
