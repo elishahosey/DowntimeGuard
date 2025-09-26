@@ -1,14 +1,12 @@
 package com.example.downtimeguard.ui.theme.viewmodel
 
 import android.app.Application
-import android.content.pm.ApplicationInfo
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.example.downtimeguard.data.model.AppUsageInfo
 import com.example.downtimeguard.data.model.AppUsageSummary
-import com.example.downtimeguard.data.repository.AppRepository
 import com.example.downtimeguard.data.repository.AppUsageRepository
 import com.example.downtimeguard.services.AppTrackerServices
 import kotlinx.coroutines.flow.map
@@ -19,7 +17,6 @@ import java.util.Locale
 class AppUsageViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = AppUsageRepository(application)
-    private val appRepository = AppRepository(application)
 
     // public LiveData so UI can observe it
     private val _isPermissionGranted = MutableLiveData(false)
@@ -31,10 +28,6 @@ class AppUsageViewModel(application: Application) : AndroidViewModel(application
     // The UI expects LiveData<List<AppUsageInfo>>
     val todayEvents: LiveData<List<AppUsageInfo>> =
         repository.getTodayAppUsageEvents().asLiveData()
-
-    //The UI expects List<ApplicationInfo> for the state
-    val currentApps: LiveData<List<ApplicationInfo>> =
-        appRepository.
 
 
 
