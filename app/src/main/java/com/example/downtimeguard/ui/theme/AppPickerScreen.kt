@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -33,36 +34,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewModelScope
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.downtimeguard.data.model.AppItem
-import com.example.downtimeguard.data.repository.AppRepository
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import com.example.downtimeguard.ui.theme.viewmodel.AppUsageViewModel
 
-
-class AppsViewModel(private val repo: AppRepository) : ViewModel() {
-    //reading the stream of apps from the viewmodel
-    val apps: StateFlow<List<AppItem>> = repo.apps
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
-
-    //tell viewmodel to refresh the stream
-    fun refresh() { viewModelScope.launch { repo.loadApps() } }
-}
 
 @Composable
 fun AppPickerScreen(
-    viewModel: AppsViewModel,
+    navController: NavController,
+    viewModel: AppUsageViewModel = hiltViewModel<AppUsageViewModel>(),// tell which hilt view to reference or from dependency injection graph
     onDone: (List<AppItem>) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LaunchedEffect(Unit) { viewModel.refresh() }
 
     //collect the apps as they stream through
-    val allApps by viewModel.apps.collectAsStateWithLifecycle()
+    val allApps: List<AppItem> by viewModel.apps
+        .observeAsState(initial = emptyList())
+
 
     //remember nothing at first, filter as searched bar filled out
     //Keep query and filtered list across UI compose changes, updating when query or app list changes

@@ -5,11 +5,15 @@ import android.content.pm.PackageManager
 import android.util.Log
 import com.example.downtimeguard.data.local.AppDatabase
 import com.example.downtimeguard.data.model.AppUsageInfo
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppUsageRepository(
-    private val context: Context
+@Singleton //tell Hilt this is on the application level shared across the app
+class AppUsageRepository @Inject constructor(
+    @ApplicationContext val context: Context
 ) {
     private val dao = AppDatabase.get(context).appUsageDao()
 

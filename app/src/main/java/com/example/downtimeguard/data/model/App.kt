@@ -4,6 +4,8 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 
 
+
+
 //snapshot of apps and details for later reference
 data class AppListUIState (
     val appList: List<ApplicationInfo> = emptyList()

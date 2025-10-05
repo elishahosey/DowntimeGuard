@@ -1,22 +1,30 @@
 package com.example.downtimeguard.ui.theme.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.downtimeguard.data.model.AppItem
 import com.example.downtimeguard.data.model.AppUsageInfo
 import com.example.downtimeguard.data.model.AppUsageSummary
+import com.example.downtimeguard.data.repository.AppRepository
 import com.example.downtimeguard.data.repository.AppUsageRepository
 import com.example.downtimeguard.services.AppTrackerServices
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-class AppUsageViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = AppUsageRepository(application)
+@HiltViewModel //needed automatically pass in viewmodel bundle/state
+class AppUsageViewModel @Inject constructor(
+    private val repository: AppUsageRepository,
+    private val appRepository: AppRepository
+) : ViewModel() {
+    val apps: LiveData<List<AppItem>> = appRepository.apps.asLiveData()
 
     // public LiveData so UI can observe it
     private val _isPermissionGranted = MutableLiveData(false)
@@ -75,4 +83,6 @@ class AppUsageViewModel(application: Application) : AndroidViewModel(application
         val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
         return sdf.format(Date(timestamp))
     }
+
+    fun refresh() = viewModelScope.launch { appRepository.refreshApps() }
 }

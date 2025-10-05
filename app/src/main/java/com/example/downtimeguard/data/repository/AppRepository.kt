@@ -4,13 +4,18 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.example.downtimeguard.data.model.AppItem
 import com.example.downtimeguard.data.model.toAppItem
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class AppRepository (context: Context){
+@Singleton //tell Hilt this is on the application level shared across the app
+class AppRepository @Inject constructor(
+    @ApplicationContext val context: Context
+){
     private val _apps = MutableStateFlow<List<AppItem>>(emptyList())
     val pm: PackageManager = context.packageManager
     val apps = _apps.asStateFlow() //viewModel checks this

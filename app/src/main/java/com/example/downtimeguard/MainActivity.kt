@@ -7,12 +7,14 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.compose.rememberNavController
 import com.example.downtimeguard.services.AppTrackerServices
-import com.example.downtimeguard.ui.theme.AppTrackerScreen
 import com.example.downtimeguard.ui.theme.DowntimeGuardTheme
 import com.example.downtimeguard.ui.theme.viewmodel.AppUsageViewModel
 import com.example.downtimeguard.utils.AppTrackerService
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var stat: Boolean = false
     private lateinit var ats: AppTrackerService
@@ -21,13 +23,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //val navController = rememberNavController()
+            val navController = rememberNavController()
             DowntimeGuardTheme {
-               // NavGraph(navController)
+                NavGraph(navController)
             }
-                AppTrackerScreen(viewModel)
+//                AppTrackerScreen(viewModel)
         }
-
+        //checking if hilt library is being used, got snagged on this issue for a while
+        Log.d("HILT_CHECK", "Factory = ${defaultViewModelProviderFactory::class.java.name}")
 
 //        //TODO: hoist this pass other UIs
 //        ats = AppTrackerService(this)

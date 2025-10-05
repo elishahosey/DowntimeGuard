@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import com.example.downtimeguard.data.model.AppItem
 import com.example.downtimeguard.data.repository.AppRepository
 import com.example.downtimeguard.data.repository.AppUsageRepository
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +15,6 @@ import kotlinx.coroutines.launch
 
 class AppTrackerServices : AccessibilityService() {
     private val TAG = "AppTrackerService"
-    val apps: LiveData<List<AppItem>> = appRepository.apps.asLiveData()
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var repository:AppUsageRepository
     private lateinit var appRepository: AppRepository

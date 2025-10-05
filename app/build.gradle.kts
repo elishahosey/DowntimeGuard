@@ -5,9 +5,12 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     // Kotlin serialization plugin for type safe routes and navigation arguments
     kotlin("plugin.serialization") version "2.0.21"
-
+    id("com.google.dagger.hilt.android") version "2.57.2"
 }
 
+hilt {
+    enableAggregatingTask = false
+}
 
 
 android {
@@ -47,7 +50,21 @@ android {
 }
 
 dependencies {
+    //Need it for viewmodel+UI passing from navigation and application level
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    implementation("com.google.dagger:hilt-android:2.57.2")
+    kapt("com.google.dagger:hilt-compiler:2.57.2")
+
+
+    kapt("com.google.dagger:hilt-compiler:2.57.2")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel-compose:1.3.0")
     //    implementation(libs.androidx.navigation.compose.jvmstubs)
+
+
+    implementation("androidx.activity:activity-ktx:1.9.2")
+
+
+
     val room_version = "2.7.2"
 
     implementation("androidx.room:room-runtime:$room_version")
@@ -55,7 +72,7 @@ dependencies {
 
     val nav_version = "2.9.0"
     implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
 
     // Navigation dependencies from document
     kapt("androidx.room:room-compiler:$room_version")
@@ -68,8 +85,7 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
 
-
-    implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

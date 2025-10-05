@@ -37,13 +37,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.downtimeguard.data.model.AppUsageInfo
 import com.example.downtimeguard.data.model.AppUsageSummary
 import com.example.downtimeguard.ui.theme.viewmodel.AppUsageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTrackerScreen(viewModel: AppUsageViewModel) {
+fun AppTrackerScreen(viewModel: AppUsageViewModel = hiltViewModel<AppUsageViewModel>()) {
     val context = LocalContext.current
     val isPermissionGranted by viewModel.isPermissionGranted.observeAsState(initial=false)
     val appUsageSummary by viewModel.appUsageSummary.observeAsState(initial = emptyList())
