@@ -1,6 +1,8 @@
 package com.example.downtimeguard.data.repository
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.example.downtimeguard.data.model.AppItem
 import com.example.downtimeguard.data.model.toAppItem
@@ -22,14 +24,26 @@ class AppRepository @Inject constructor(
 
     //packaging apps in a certain way on a different thread (takes time)
     suspend fun loadApps(): List<AppItem> = withContext(Dispatchers.IO) {
-        val appList =
-            pm.getInstalledApplications(PackageManager.GET_META_DATA)
-                .map { it.toAppItem(pm) }            // ApplicationInfo -> AppItem
-                .distinctBy { it.id }
-                .sortedBy { it.title.lowercase() }
+        //starting the intent
+        val intent = Intent(Intent.ACTION_MAIN, null).apply {
+            addCategory(Intent.CATEGORY_LAUNCHER)
+        }
 
-         return@withContext appList
+        //find all activities for this intent ,hence 0
+        pm.queryIntentActivities(intent, 0)
+            .asSequence()
+            .map { it.activityInfo }
+            .filter { info ->
+                (info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0
+            }
+            .map { info ->
+                info.applicationInfo.toAppItem(pm)
+            }
+            .distinctBy { it.id }
+            .sortedBy { it.title.lowercase() }
+            .toList()
     }
+
 
     suspend fun refreshApps(){
         _apps.value=loadApps()

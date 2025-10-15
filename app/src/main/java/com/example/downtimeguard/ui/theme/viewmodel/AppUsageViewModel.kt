@@ -46,7 +46,7 @@ class AppUsageViewModel @Inject constructor(
     // Build per-app summary from today's events
     val appUsageSummary: LiveData<List<AppUsageSummary>> =
         repository.getTodayAppUsageEvents()
-            .map { events ->                       // name the param!
+            .map { events ->
                 events
                     .groupBy { it.packageName }
                     .map { (packageName, appEvents) ->

@@ -31,6 +31,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -73,7 +74,7 @@ fun AppPickerScreen(
             value = query,
             onValueChange = { query = it },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-            placeholder = { Text("Search apps") },
+            placeholder = { Text("Search apps that you want to block") },
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -137,8 +138,8 @@ private fun AppRow(
     ) {
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
-            Text(app.title, style = MaterialTheme.typography.bodyLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            Text(app.id, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(app.title, style = MaterialTheme.typography.bodyLarge, maxLines = 1,overflow = TextOverflow.Ellipsis,color=Color.LightGray)
+            Text(app.id, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis,color=Color.LightGray)
         }
         Checkbox(checked = selected, onCheckedChange = { onToggle() })
     }
