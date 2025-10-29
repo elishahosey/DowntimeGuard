@@ -74,6 +74,82 @@ fun DashboardScreen(navController: NavController) {
     )
 }
 
+//@Composable
+//fun EmergencyUnlockButton(
+//    vm: AppUsageViewModel = hiltViewModel(),
+//    requiredUprightMs: Long = 8_000L,   // must stand ~8s
+//    holdMs: Long = 3_000L,               // then hold 3s
+//    viewModel: AppUsageViewModel
+//) {
+//    val context = LocalContext.current
+//    var uprightForMs by remember { mutableStateOf(0L) }
+//    var isUpright by remember { mutableStateOf(false) }
+//    var isPressing by remember { mutableStateOf(false) }
+//    var pressProgressMs by remember { mutableStateOf(0L) }
+//
+//    // Listen to posture broadcasts
+//    DisposableEffect(Unit) {
+//        val r = object : BroadcastReceiver() {
+//            override fun onReceive(c: Context?, i: Intent?) {
+//                isUpright = i?.getBooleanExtra("isUpright", false) ?: false
+//                uprightForMs = i?.getLongExtra("uprightForMs", 0L) ?: 0L
+//            }
+//        }
+//        LocalBroadcastManager.getInstance(context)
+//            .registerReceiver(r, IntentFilter("DG_POSTURE"))
+//        onDispose { LocalBroadcastManager.getInstance(context).unregisterReceiver(r) }
+//    }
+//
+//    // Hold-to-unlock timer (only counts while upright requirement is satisfied)
+//    LaunchedEffect(isPressing, isUpright, uprightForMs) {
+//        if (!isPressing) { pressProgressMs = 0L; return@LaunchedEffect }
+//        while (isPressing) {
+//            if (uprightForMs >= requiredUprightMs) {
+//                delay(50)
+//                pressProgressMs += 50
+//                if (pressProgressMs >= holdMs) {
+//                    // Grant temporary unlock for rule.unlockDurationMin minutes
+//                    vm.requestEmergencyUnlock()
+//                    isPressing = false
+//                    pressProgressMs = 0L
+//                }
+//            } else {
+//                // Not upright long enough; don’t count
+//                pressProgressMs = 0L
+//                delay(100)
+//            }
+//        }
+//    }
+//
+//    val ready = uprightForMs >= requiredUprightMs
+//    val holdPct = (pressProgressMs.toFloat() / holdMs).coerceIn(0f, 1f)
+//
+//    Button(
+//        onClick = { /* handled by press */ },
+//        enabled = true,
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(16.dp)
+//            .pointerInput(ready) {
+//                detectTapGestures(
+//                    onPress = {
+//                        isPressing = true
+//                        tryAwaitRelease()
+//                        isPressing = false
+//                    }
+//                )
+//            }
+//    ) {
+//        val label = when {
+//            !ready -> "Stand up to unlock (${(requiredUprightMs - uprightForMs).coerceAtLeast(0).div(1000)}s)"
+//            isPressing -> "Hold… ${(holdPct * 100).toInt()}%"
+//            else -> "Emergency Unlock (press & hold)"
+//        }
+//        Text(label)
+//    }
+//}
+
+
 //TODO Build App Status Chart Screen here
 @Preview(showBackground = true,name = "Dashboard Preview")
 @Composable

@@ -50,11 +50,9 @@ android {
 }
 
 dependencies {
-
-
-
-
-
+    //DataStore + Preferences Stuff
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("androidx.preference:preference-ktx:1.2.0")
 
     //Need it for viewmodel+UI passing from navigation and application level
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")

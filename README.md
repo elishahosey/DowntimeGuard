@@ -45,6 +45,11 @@ This is an active solo project, still evolving.
 ### ✅ Core Features
 - [x] App usage tracking
 - [x] Distraction list selection
+- [] cross device at home (phone affect tv/desktop)
+- [x] add sensor detection (e.g.stop when i lay down)
+- [x] implement emergency button - 5 per month
+- [] get accessibility to flow rightly
+- [] create settings viewmodel
 
 ### 🔜 In Progress
 - [ ] Charts for usage insights

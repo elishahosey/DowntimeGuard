@@ -33,8 +33,9 @@ class AppRepository @Inject constructor(
         pm.queryIntentActivities(intent, 0)
             .asSequence()
             .map { it.activityInfo }
-            .filter { info ->
-                (info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0
+            .filter { info -> //sneaking google through for now (big distractor for me)
+                val isSystemApp = (info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                !isSystemApp || info.packageName == "com.android.chrome"
             }
             .map { info ->
                 info.applicationInfo.toAppItem(pm)

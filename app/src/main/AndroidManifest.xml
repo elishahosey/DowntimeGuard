@@ -11,7 +11,9 @@
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
-<!--    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:name=".DowntimeGuard"
         android:allowBackup="true"
@@ -49,6 +51,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.theme.BlockActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.DowntimeGuard.Fullscreen" />
+
         <!--            this is a background service-->
         <service
             android:name=".services.AppTrackerServices"
@@ -63,6 +74,21 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/app_tracker_accessibility_service"/>
 
+        </service>
+        <service android:name=".services.PostureBlockService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false">
+        </service>
+        <service android:name=".services.BlockAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
         </service>
     </application>
 
