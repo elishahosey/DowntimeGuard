@@ -8,8 +8,8 @@ I’m sharing this project publicly to showcase the concept and my development j
 ### 🏗️ Progress
 
 1. **Choose an app** you want DowntimeGuard to monitor.
-3. **Lay down?** The app gets automatically **blocked**.  
-4. You *could* bypass it by holding your phone at a strange angle...  
+2. **Lay down?** The app gets automatically **blocked**.  
+3. You *could* bypass it by holding your phone at a strange angle...  
    but it’s uncomfortable enough to make you rethink your life choices 😅
 
 
