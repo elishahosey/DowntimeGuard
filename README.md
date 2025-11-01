@@ -4,6 +4,15 @@
 
 I’m sharing this project publicly to showcase the concept and my development journey. Feel free to explore and follow along—but please note this isn’t open for reuse or contributions at this time.
 
+
+### 🏗️ Progress
+
+1. **Choose an app** you want DowntimeGuard to monitor.
+3. **Lay down?** The app gets automatically **blocked**.  
+4. You *could* bypass it by holding your phone at a strange angle...  
+   but it’s uncomfortable enough to make you rethink your life choices 😅
+
+
 ---
 
 ## 📱 What It Does
@@ -81,3 +90,12 @@ If the idea resonates with you, feel free to star the repo or reach out. I’d l
 > Made for focus.  
 > Built for fun.  
 > Shared with intention. ✨
+
+
+
+
+
+
+
+
+
