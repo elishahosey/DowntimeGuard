@@ -6,13 +6,14 @@ I’m sharing this project publicly to showcase the concept and my development j
 
 
 ### 🏗️ Progress
-
+<img src="./app/assets/images/frontpage.jpg" alt="DowntimeGuard front page" width="250" style="border-radius:12px; margin-top:8px;" />
 1. **Choose an app** you want DowntimeGuard to monitor.
-2. **Lay down?** The app gets automatically **blocked**.  
+ <img src="./app/assets/images/pickApps.jpg" alt="DowntimeGuard front page" width="250" style="border-radius:12px; margin-top:8px;" />
+2. **Lay down?** The app gets automatically **blocked**.
+   <img src="./app/assets/images/appBlock.jpg" alt="DowntimeGuard front page" width="250" style="border-radius:12px; margin-top:8px;" />
 3. You *could* bypass it by holding your phone at a strange angle...  
-   but it’s uncomfortable enough to make you rethink your life choices 😅
-
-
+   but it’s uncomfortable enough to make you rethink your life choices �
+   �
 ---
 
 ## 📱 What It Does
@@ -90,12 +91,5 @@ If the idea resonates with you, feel free to star the repo or reach out. I’d l
 > Made for focus.  
 > Built for fun.  
 > Shared with intention. ✨
-
-
-
-
-
-
-
 
 
